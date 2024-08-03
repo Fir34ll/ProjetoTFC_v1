@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Calculadora de Juros Compostos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    
+    <style>
+        .calculator {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #F56A6A;;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .calculator h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .calculator .form-group {
+            margin-bottom: 15px;
+        }
+        .calculator .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .calculator .form-group input,
+        .calculator .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator .form-group button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculator .form-group button:hover {
+            background: #0056b3;
+        }
+        .calculator .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Header -->
+                <header id="header">
+                    <a href="indexcalculadora" class="logo"><strong>Calculadora de Juros Compostos</strong> </a>
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <div class="calculator">
+                        <h2>Calculadora de Juros Compostos</h2>
+                        <form id="interestForm">
+                            <div class="form-group">
+                                <label for="principal">Valor Inicial (R$):</label>
+                                <input type="number" id="principal" name="principal" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="monthly">Valor Mensal (R$):</label>
+                                <input type="number" id="monthly" name="monthly" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rate">Taxa de Juros:</label>
+                                <input type="number" id="rate" name="rate" step="0.01" required>
+                                <select id="rateType" name="rateType">
+                                    <option value="annual">Anual</option>
+                                    <option value="monthly">Mensal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="period">Período:</label>
+                                <input type="number" id="period" name="period" step="1" required>
+                                <select id="periodType" name="periodType">
+                                    <option value="years">Anos</option>
+                                    <option value="months">Meses</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                            
+                                <ul class="actions fit">
+                                    <li><a class="button primary fit" onclick="calculate()">Calcular</a></li>
+                                </ul>
+                                
+                            </div>
+                            <div class="result">
+                                <h3>Resultado:</h3>
+                                <p id="result">R$ 0.00</p>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Search -->
+                <section id="search" class="alt">
+
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Homepage</a></li>
+                        <li><a href="{{ url_for('generic') }}">Generic</a></li>
+                        <li><a href="indexgrafico">Gráficos</a></li>
+                        <li>
+                            <span class="opener">Conteúdo Educacional</span>
+                            <ul>
+                                <li><a href="{{ url_for('iniciante') }}">Iniciante</a></li>
+                                <li><a href="{{ url_for('intermediario') }}">Intermediário</a></li>
+                                <li><a href="{{ url_for('avançado') }}">Avançado</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('indexcarteira') }}">Carteira Virtual</a></li>
+                        <li><a href="{{ url_for('indexcalculadora') }}">Calculadora de Juros</a></li>
+                        <li><a href="{{ url_for('indexaçao') }}">Buscar Ação</a></li>
+                        <li><a href="{{ url_for('perfilinvestidor') }}">perfil do investidor</a></li>
+                    </ul>
+                </nav>
+
+               
+
+
+
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">&copy; Aplicação feita por Rafael Ramos</a>.</p>
+            </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/browser.min.js"></script>
+    <script src="static/assets/js/breakpoints.min.js"></script>
+    <script src="static/assets/js/util.js"></script>
+    <script src="static/assets/js/main.js"></script>
+
+    <script>
+        function calculate() {
+            const principal = parseFloat(document.getElementById('principal').value);
+            const monthly = parseFloat(document.getElementById('monthly').value);
+            let rate = parseFloat(document.getElementById('rate').value);
+            const rateType = document.getElementById('rateType').value;
+            const period = parseInt(document.getElementById('period').value);
+            const periodType = document.getElementById('periodType').value;
+
+            // Convert rate to monthly if it is annual
+            if (rateType === 'annual') {
+                rate = rate / 100 / 12;
+            } else {
+                rate = rate / 100; // already in monthly rate if rateType is 'monthly'
+            }
+
+            // Convert period to months if it is in years
+            const totalMonths = periodType === 'years' ? period * 12 : period;
+
+            const futureValue = (principal * Math.pow(1 + rate, totalMonths)) + 
+                (monthly * ((Math.pow(1 + rate, totalMonths) - 1) / rate));
+
+            document.getElementById('result').textContent = `R$ ${futureValue.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

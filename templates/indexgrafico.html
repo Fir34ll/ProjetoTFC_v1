@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Candlesticks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #F56A6A;
+            border: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .form-group button:hover {
+            background-color: #1ED760;
+        }
+        #chart {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #F56A6A;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/index" class="back-button">Voltar</a>
+        <h1>Gráfico de Candlesticks</h1>
+        <div class="form-group">
+            <label for="symbol">Digite o símbolo da ação:</label>
+            <input type="text" id="symbol" placeholder="Exemplo: PETR4">
+            <button onclick="fetchData()">Mostrar Gráfico</button>
+        </div>
+        <div id="chart"></div>
+    </div>
+
+    <script src="https://unpkg.com/lightweight-charts@3.6.0/dist/lightweight-charts.standalone.production.js"></script>
+    <script>
+        let chart;
+
+        async function fetchData() {
+            const symbol = document.getElementById('symbol').value;
+            if (!symbol) {
+                alert('Por favor, insira um símbolo.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/get_quote2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ symbol }),
+                });
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+
+                if (data.historicalDataPrice.length === 0) {
+                    alert('Nenhum dado encontrado para o símbolo informado.');
+                    return;
+                }
+
+                renderChart(data.historicalDataPrice);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                alert('Erro ao buscar dados. Por favor, tente novamente mais tarde.');
+            }
+        }
+
+        function renderChart(data) {
+            // Remover o último candlestick
+            if (data.length > 0) {
+                data.pop();
+            }
+
+            // Remover o gráfico existente, se houver
+            if (chart) {
+                chart.remove();
+            }
+
+            chart = LightweightCharts.createChart(document.getElementById('chart'), {
+                width: document.getElementById('chart').clientWidth,
+                height: document.getElementById('chart').clientHeight,
+                layout: {
+                    backgroundColor: '#ffffff',
+                    textColor: '#333',
+                },
+                grid: {
+                    borderColor: '#f0f0f0',
+                    vertLines: {
+                        color: '#f0f0f0',
+                    },
+                    horzLines: {
+                        color: '#f0f0f0',
+                    },
+                },
+                crossHair: {
+                    mode: 0,
+                },
+                priceScale: {
+                    borderColor: '#f0f0f0',
+                },
+                timeScale: {
+                    borderColor: '#f0f0f0',
+                },
+            });
+
+            const candlestickSeries = chart.addCandlestickSeries({
+                upColor: '#4fff7d',
+                borderUpColor: '#4fff7d',
+                wickUpColor: '#4fff7d',
+                borderDownColor: '#ff4976',
+                wickDownColor: '#ff4976',
+            });
+
+            candlestickSeries.setData(data.map(item => ({
+                time: new Date(item.date).getTime() / 1000,
+                open: item.open,
+                high: item.high,
+                low: item.low,
+                close: item.close,
+            })));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Investidor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        .questionnaire-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #F56A6A;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="questionnaire-container rounded-lg">
+            <h1 class="text-3xl font-bold text-center mb-6">Questionário de Perfil de Investidor</h1>
+            <a href="/index" class="back-button">Voltar</a>
+            <form id="investorProfileForm">
+                <!-- Pergunta 1 -->
+                <div class="question">
+                    <h3>1. Qual a sua faixa etária?</h3>
+                    <label><input type="radio" name="age" value="18-25" class="mr-2">18-25</label><br>
+                    <label><input type="radio" name="age" value="26-35" class="mr-2">26-35</label><br>
+                    <label><input type="radio" name="age" value="36-50" class="mr-2">36-50</label><br>
+                    <label><input type="radio" name="age" value="51+" class="mr-2">51+</label>
+                </div>
+
+                <!-- Pergunta 2 -->
+                <div class="question">
+                    <h3>2. Qual a sua experiência com investimentos?</h3>
+                    <label><input type="radio" name="experience" value="Nenhuma" class="mr-2">Nenhuma</label><br>
+                    <label><input type="radio" name="experience" value="Pouca" class="mr-2">Pouca</label><br>
+                    <label><input type="radio" name="experience" value="Moderada" class="mr-2">Moderada</label><br>
+                    <label><input type="radio" name="experience" value="Alta" class="mr-2">Alta</label>
+                </div>
+
+                <!-- Pergunta 3 -->
+                <div class="question">
+                    <h3>3. Qual é o seu objetivo principal ao investir?</h3>
+                    <label><input type="radio" name="goal" value="Preservar capital" class="mr-2">Preservar capital</label><br>
+                    <label><input type="radio" name="goal" value="Obter renda" class="mr-2">Obter renda</label><br>
+                    <label><input type="radio" name="goal" value="Crescimento a longo prazo" class="mr-2">Crescimento a longo prazo</label>
+                </div>
+
+                <!-- Pergunta 4 -->
+                <div class="question">
+                    <h3>4. Qual a sua reação em relação à possibilidade de perda em um investimento?</h3>
+                    <label><input type="radio" name="riskReaction" value="Muito preocupado" class="mr-2">Muito preocupado</label><br>
+                    <label><input type="radio" name="riskReaction" value="Moderadamente preocupado" class="mr-2">Moderadamente preocupado</label><br>
+                    <label><input type="radio" name="riskReaction" value="Pouco preocupado" class="mr-2">Pouco preocupado</label><br>
+                    <label><input type="radio" name="riskReaction" value="Não me preocupo" class="mr-2">Não me preocupo</label>
+                </div>
+
+                <!-- Pergunta 5 -->
+                <div class="question">
+                    <h3>5. Qual é o seu horizonte de investimento?</h3>
+                    <label><input type="radio" name="horizon" value="Menos de 1 ano" class="mr-2">Menos de 1 ano</label><br>
+                    <label><input type="radio" name="horizon" value="1 a 3 anos" class="mr-2">1 a 3 anos</label><br>
+                    <label><input type="radio" name="horizon" value="3 a 5 anos" class="mr-2">3 a 5 anos</label><br>
+                    <label><input type="radio" name="horizon" value="Mais de 5 anos" class="mr-2">Mais de 5 anos</label>
+                </div>
+
+                <!-- Pergunta 6 -->
+                <div class="question">
+                    <h3>6. Como você reagiria se seus investimentos apresentassem uma queda significativa em um curto período?</h3>
+                    <label><input type="radio" name="shortTermLoss" value="Venderia todos os investimentos" class="mr-2">Venderia todos os investimentos</label><br>
+                    <label><input type="radio" name="shortTermLoss" value="Venderia parte dos investimentos" class="mr-2">Venderia parte dos investimentos</label><br>
+                    <label><input type="radio" name="shortTermLoss" value="Não venderia, mas ficaria preocupado" class="mr-2">Não venderia, mas ficaria preocupado</label><br>
+                    <label><input type="radio" name="shortTermLoss" value="Aumentaria os investimentos" class="mr-2">Aumentaria os investimentos</label>
+                </div>
+
+                <!-- Pergunta 7 -->
+                <div class="question">
+                    <h3>7. Qual a porcentagem do seu patrimônio está investida em ativos de risco (ações, fundos imobiliários, etc.)?</h3>
+                    <label><input type="radio" name="riskAssets" value="0-10%" class="mr-2">0-10%</label><br>
+                    <label><input type="radio" name="riskAssets" value="11-25%" class="mr-2">11-25%</label><br>
+                    <label><input type="radio" name="riskAssets" value="26-50%" class="mr-2">26-50%</label><br>
+                    <label><input type="radio" name="riskAssets" value="Mais de 50%" class="mr-2">Mais de 50%</label>
+                </div>
+
+                <!-- Pergunta 8 -->
+                <div class="question">
+                    <h3>8. Qual a sua fonte de renda principal?</h3>
+                    <label><input type="radio" name="incomeSource" value="Salário fixo" class="mr-2">Salário fixo</label><br>
+                    <label><input type="radio" name="incomeSource" value="Renda variável" class="mr-2">Renda variável</label><br>
+                    <label><input type="radio" name="incomeSource" value="Rendimentos de investimentos" class="mr-2">Rendimentos de investimentos</label><br>
+                    <label><input type="radio" name="incomeSource" value="Outros" class="mr-2">Outros</label>
+                </div>
+
+                <!-- Pergunta 9 -->
+                <div class="question">
+                    <h3>9. Com que frequência você acompanha o desempenho dos seus investimentos?</h3>
+                    <label><input type="radio" name="trackingFrequency" value="Diariamente" class="mr-2">Diariamente</label><br>
+                    <label><input type="radio" name="trackingFrequency" value="Semanalmente" class="mr-2">Semanalmente</label><br>
+                    <label><input type="radio" name="trackingFrequency" value="Mensalmente" class="mr-2">Mensalmente</label><br>
+                    <label><input type="radio" name="trackingFrequency" value="Raramente" class="mr-2">Raramente</label>
+                </div>
+
+                <!-- Pergunta 10 -->
+                <div class="question">
+                    <h3>10. Qual a sua expectativa de retorno anual sobre seus investimentos?</h3>
+                    <label><input type="radio" name="returnExpectation" value="Até 5%" class="mr-2">Até 5%</label><br>
+                    <label><input type="radio" name="returnExpectation" value="5-10%" class="mr-2">5-10%</label><br>
+                    <label><input type="radio" name="returnExpectation" value="11-20%" class="mr-2">11-20%</label><br>
+                    <label><input type="radio" name="returnExpectation" value="Mais de 20%" class="mr-2">Mais de 20%</label>
+                </div>
+
+                <!-- Pergunta 11 -->
+                <div class="question">
+                    <h3>11. Como você descreveria seu conhecimento sobre o mercado financeiro?</h3>
+                    <label><input type="radio" name="marketKnowledge" value="Nenhum" class="mr-2">Nenhum</label><br>
+                    <label><input type="radio" name="marketKnowledge" value="Básico" class="mr-2">Básico</label><br>
+                    <label><input type="radio" name="marketKnowledge" value="Intermediário" class="mr-2">Intermediário</label><br>
+                    <label><input type="radio" name="marketKnowledge" value="Avançado" class="mr-2">Avançado</label>
+                </div>
+
+                <!-- Pergunta 12 -->
+                <div class="question">
+                    <h3>12. Qual é a sua disposição para investir em produtos financeiros inovadores e menos conhecidos?</h3>
+                    <label><input type="radio" name="innovationWillingness" value="Nenhuma" class="mr-2">Nenhuma</label><br>
+                    <label><input type="radio" name="innovationWillingness" value="Baixa" class="mr-2">Baixa</label><br>
+                    <label><input type="radio" name="innovationWillingness" value="Moderada" class="mr-2">Moderada</label><br>
+                    <label><input type="radio" name="innovationWillingness" value="Alta" class="mr-2">Alta</label>
+                </div>
+
+                <!-- Botão de Enviar -->
+                <div class="text-center">
+                    <button type="submit" class="mt-4" style="background-color: #F56A6A; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; color: white; padding: 8px 16px;">Enviar</button>
+
+                </div>
+            </form>
+            <div id="result" class="text-center mt-6"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('investorProfileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            let score = 0;
+            const form = new FormData(event.target);
+            const questions = [
+                { name: 'age', values: { '18-25': 1, '26-35': 2, '36-50': 3, '51+': 4 } },
+                { name: 'experience', values: { 'Nenhuma': 1, 'Pouca': 2, 'Moderada': 3, 'Alta': 4 } },
+                { name: 'goal', values: { 'Preservar capital': 1, 'Obter renda': 2, 'Crescimento a longo prazo': 3 } },
+                { name: 'riskReaction', values: { 'Muito preocupado': 1, 'Moderadamente preocupado': 2, 'Pouco preocupado': 3, 'Não me preocupo': 4 } },
+                { name: 'horizon', values: { 'Menos de 1 ano': 1, '1 a 3 anos': 2, '3 a 5 anos': 3, 'Mais de 5 anos': 4 } },
+                { name: 'shortTermLoss', values: { 'Venderia todos os investimentos': 1, 'Venderia parte dos investimentos': 2, 'Não venderia, mas ficaria preocupado': 3, 'Aumentaria os investimentos': 4 } },
+                { name: 'riskAssets', values: { '0-10%': 1, '11-25%': 2, '26-50%': 3, 'Mais de 50%': 4 } },
+                { name: 'incomeSource', values: { 'Salário fixo': 1, 'Renda variável': 2, 'Rendimentos de investimentos': 3, 'Outros': 4 } },
+                { name: 'trackingFrequency', values: { 'Diariamente': 4, 'Semanalmente': 3, 'Mensalmente': 2, 'Raramente': 1 } },
+                { name: 'returnExpectation', values: { 'Até 5%': 1, '5-10%': 2, '11-20%': 3, 'Mais de 20%': 4 } },
+                { name: 'marketKnowledge', values: { 'Nenhum': 1, 'Básico': 2, 'Intermediário': 3, 'Avançado': 4 } },
+                { name: 'innovationWillingness', values: { 'Nenhuma': 1, 'Baixa': 2, 'Moderada': 3, 'Alta': 4 } }
+            ];
+    
+            // Calcula o resultado do questionário
+            questions.forEach(question => {
+                const answer = form.get(question.name);
+                if (answer) {
+                    score += question.values[answer] || 0;
+                }
+            });
+    
+            let resultText;
+            if (score <= 24) {
+                resultText = "Conservador";
+            } else if (score <= 36) {
+                resultText = "Moderado";
+            } else {
+                resultText = "Arrojado";
+            }
+    
+            // Envia apenas o resultado final para o endpoint Flask
+            fetch('/save_investor_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ result: resultText })
+            })
+            .then(response => response.json())
+    
+            // Exibe o resultado final na página
+            document.getElementById('result').innerText = `Você é um investidor ${resultText}.`;
+        });
+    </script>
+    
+<!-- Scripts -->
+<script src="static/assets/js/jquery.min.js"></script>
+<script src="static/assets/js/browser.min.js"></script>
+<script src="static/assets/js/breakpoints.min.js"></script>
+<script src="static/assets/js/util.js"></script>
+<script src="static/assets/js/main.js"></script>
+
+</body>
+</html>

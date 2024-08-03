@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>O Pequeno Investidor</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                        <header id="header">
+                            <a class="logo"><strong>O Pequeno Investidor</strong> </a>
+                            <ul class="icons">    
+                                <a href="{{ url_for('logout') }}" class="button small">Logout</a>
+                            </ul>
+                            
+                        </header>
+
+                    <!-- Banner -->
+                        <section id="banner">
+                            <div class="content">
+                                <header>
+                                    <h1>O que é o mercado financeiro?<br />
+                                    </h1>
+                                    <p>Conceitos básicos sobre mercado financeiro</p>
+                                </header>
+                                <p>O mercado financeiro é um ambiente, físico ou virtual, onde ocorrem negociações de ativos financeiros, como ações, títulos, moedas e commodities. Ele desempenha um papel crucial na economia, pois facilita a transferência de recursos entre investidores, poupadores e empresas.</p>
+                                <ul class="actions">
+                                    <li><a href="#" class="button big">Learn More</a></li>
+                                </ul>
+                            </div>
+                            <span class="image object">
+                                <img src="{{ url_for('static', filename='images/pic10.jpeg') }}" alt="" />
+                            </span>
+                        </section>
+
+
+                    <!-- Section -->
+                        <section>
+                            <header class="major">
+                                <h2>Contéudos informativos relevantes</h2>
+                            </header>
+                            <div class="posts">
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo1.jpg') }}" alt="" /></a>
+                                    <h3>O que é Análise Técnica?</h3>
+                                    <p>Explicação dos princípios básicos e como ela difere da análise fundamentalista.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo2.jpg') }}" alt="" /></a>
+                                    <h3>Análise Técnica em Diferentes Mercados</h3>
+                                    <p>Como a análise técnica pode ser aplicada em diferentes mercados.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo3.jpg') }}" alt="" /></a>
+                                    <h3>Ferramentas e Plataformas de Trading</h3>
+                                    <p>Melhores Plataformas para Análise Técnica
+                                        TradingView, MetaTrader, NinjaTrader, etc.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo4.jpg') }}" alt="" /></a>
+                                    <h3>Análises de Ações Específicas</h3>
+                                    <p>Exemplo de análise técnica em ações populares.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo5.jpg') }}" alt="" /></a>
+                                    <h3>Impacto das noticias no mercado financeiro</h3>
+                                    <p>As notícias podem ter um impacto significativo no mercado financeiro, afetando o comportamento dos preços de ativos.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                                <article>
+                                    <a href="#" class="image"><img src="{{ url_for('static', filename='images/conteudo6.jpg') }}" alt="" /></a>
+                                    <h3>Erros Comuns em Análise Técnica</h3>
+                                    <p>Exemplos de erros comuns e como evitá-los.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button">More</a></li>
+                                    </ul>
+                                </article>
+                            </div>
+                        </section>
+
+                </div>
+            </div>
+
+        <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Search -->
+                        <section id="search" class="alt">
+                            <h2>Bem-vindo, {{ name }}</h2>
+                            <h4>Tipo de Investidor: {{ perfilinvestidor }}</h4>
+                        </section>
+
+                    <!-- Menu -->
+                        <nav id="menu">
+                            <header class="major">
+                                <h2>Menu</h2>
+                            </header>
+                            <ul>
+                                <li><a href="{{ url_for('index') }}">Homepage</a></li>
+                                <li><a href="{{ url_for('generic') }}">Generic</a></li>
+                                <li><a href="indexgrafico">Gráficos</a></li>
+                                <li>
+                                    <span class="opener">Conteúdo Educacional</span>
+                                    <ul>
+                                        <li><a href="{{ url_for('iniciante') }}">Iniciante</a></li>
+                                        <li><a href="{{ url_for('intermediario') }}">Intermediário</a></li>
+                                        <li><a href="{{ url_for('avançado') }}">Avançado</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{ url_for('indexcarteira') }}">Carteira Virtual</a></li>
+                                <li><a href="{{ url_for('indexcalculadora') }}">Calculadora de Juros</a></li>
+                                <li><a href="{{ url_for('indexaçao') }}">Buscar Ação</a></li>
+                                <li><a href="{{ url_for('perfilinvestidor') }}">perfil do investidor</a></li>
+                            </ul>
+                        </nav>
+
+
+
+                    <!-- Section -->
+                        <section>
+                            <header class="major">
+                                <h2>Entre em contato</h2>
+                            </header>
+                            <p>Caso encontre algum bug ou queira tirar duvidas especificas sobre a aplicação, por favor reporte para o e-mail. </p>
+                            <ul class="contact">
+                                <li class="icon solid fa-envelope"><a href="#">rafael.r.o.filho@academico.unirv.edu.br</a></li>
+                                <li class="icon solid fa-home">UNIRV - Projeto para TFC<br />
+                            </ul>
+                        </section>
+
+                    <!-- Footer -->
+                        <footer id="footer">
+                            <p class="copyright">&copy; Aplicação feita por Rafael Ramos</a>.</p>
+                        </footer>
+
+                </div>
+            </div>
+
+    </div>
+
+<!-- Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+</body>
+</html>

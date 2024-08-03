@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Informações da Ação</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+
+    <style>
+        .calculator, .stock-search {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+            
+        }
+        .calculator h2, .stock-search h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .calculator .form-group, .stock-search .mb-4 {
+            margin-bottom: 15px;
+            
+        }
+        .calculator .form-group label, .stock-search label {
+            display: block;
+            margin-bottom: 5px;
+            
+        }
+        .calculator .form-group input, .stock-search input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .calculator .form-group select, .stock-search select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator .form-group button, .stock-search button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculator .form-group button:hover, .stock-search button:hover {
+            background: #0056b3;
+        }
+        .calculator .result, .stock-search .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Header -->
+                <header id="header">
+                    <a href="indexcalculadora" class="logo"><strong>Informações da Ação</strong> </a>
+
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <div class="stock-search">
+                        <h1 class="text-2xl font-bold mb-4">Buscar Ação</h1>
+                        <div class="mb-4">
+                            <label for="symbol" class="block text-gray-700 text-sm font-bold mb-2">Símbolo da Ação:</label>
+                            <input type="text" id="symbol" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <ul class="actions fit">
+                                
+                                <li><a class="button primary fit" onclick="fetchStockInfo()">Buscar</a></li>
+                            </ul>
+                        </div>
+                        <div id="stock-info" class="hidden">
+                            <div class="flex items-center mb-4">
+                                <img id="logo" alt="Logo" class="h-16 w-16 mr-4">
+                                <div>
+                                    <h1 id="shortName" class="text-2xl font-bold"></h1>
+                                    <p id="longName" class="text-gray-600"></p>
+                                </div>
+                            </div>
+                            <div id="details">
+                                <p><strong>Preço Atual:</strong> R$ <span id="price"></span></p>
+                                <p><strong>Variação:</strong> <span id="change"></span></p>
+                                <p><strong>Percentual de Variação:</strong> <span id="changePercent"></span>%</p>
+                                <p><strong>Máxima do Dia:</strong> R$ <span id="dayHigh"></span></p>
+                                <p><strong>Mínima do Dia:</strong> R$ <span id="dayLow"></span></p>
+                                <p><strong>Intervalo do Dia:</strong> <span id="dayRange"></span></p>
+                                <p><strong>P/L:</strong> <span id="priceEarnings"></span></p>
+                                <p><strong>EPS:</strong> <span id="earningsPerShare"></span></p>
+                            </div>
+                        </div>
+                        <div id="error-message" class="hidden text-red-500 mt-4"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Search -->
+                <section id="search" class="alt">
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Homepage</a></li>
+                        <li><a href="{{ url_for('generic') }}">Generic</a></li>
+                        <li><a href="indexgrafico">Gráficos</a></li>
+                        <li>
+                            <span class="opener">Conteúdo Educacional</span>
+                            <ul>
+                                <li><a href="{{ url_for('iniciante') }}">Iniciante</a></li>
+                                <li><a href="{{ url_for('intermediario') }}">Intermediário</a></li>
+                                <li><a href="{{ url_for('avançado') }}">Avançado</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('indexcarteira') }}">Carteira Virtual</a></li>
+                        <li><a href="{{ url_for('indexcalculadora') }}">Calculadora de Juros</a></li>
+                        <li><a href="{{ url_for('indexaçao') }}">Buscar Ação</a></li>
+                        <li><a href="{{ url_for('perfilinvestidor') }}">perfil do investidor</a></li>
+                    </ul>
+                </nav>
+
+               
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Aplicação feita por Rafael Ramos</a>.</p>
+                </footer>
+ 
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/jquery.scrolly.min.js"></script>
+    <script src="static/assets/js/browser.min.js"></script>
+    <script src="static/assets/js/breakpoints.min.js"></script>
+    <script src="static/assets/js/util.js"></script>
+    <script src="static/assets/js/main.js"></script>
+
+    <script>
+        async function fetchStockInfo() {
+            const symbol = document.getElementById('symbol').value;
+            const response = await fetch('/show_stock_info', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symbol: symbol })
+            });
+            const data = await response.json();
+
+            if (data.error) {
+                document.getElementById('error-message').innerText = data.error;
+                document.getElementById('error-message').classList.remove('hidden');
+                document.getElementById('stock-info').classList.add('hidden');
+            } else {
+                document.getElementById('error-message').classList.add('hidden');
+                document.getElementById('stock-info').classList.remove('hidden');
+                document.getElementById('logo').src = data.logourl;
+                document.getElementById('shortName').innerText = data.shortName;
+                document.getElementById('longName').innerText = data.longName;
+                document.getElementById('price').innerText = data.regularMarketPrice;
+                document.getElementById('change').innerText = data.regularMarketChange;
+                document.getElementById('changePercent').innerText = data.regularMarketChangePercent;
+                document.getElementById('dayHigh').innerText = data.regularMarketDayHigh;
+                document.getElementById('dayLow').innerText = data.regularMarketDayLow;
+                document.getElementById('dayRange').innerText = data.regularMarketDayRange;
+                document.getElementById('priceEarnings').innerText = data.priceEarnings;
+                document.getElementById('earningsPerShare').innerText = data.earningsPerShare;
+            }
+        }
+    </script>
+</body>
+</html>

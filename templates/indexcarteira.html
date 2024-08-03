@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Carteira Virtual</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilo para a logo */
+        .logo {
+            display: block;
+            text-align: center;
+            font-size: 2em; /* Ajuste o tamanho conforme necessário */
+            font-weight: bold;
+            color: #333; /* Ajuste a cor conforme necessário */
+            margin: 20px 0; /* Ajuste a margem conforme necessário */
+        }
+        .header {
+            display: flex;
+            margin: 20px auto;
+            max-width: 900px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Header -->
+                <header id="header">
+                    <a class="logo"><strong>Carteira Virtual</strong></a>
+                    
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <div class="header">
+                        <h1>Simule uma carteira virtual com suas ações preferidas</h1>
+                    </div>
+                    <div class="content">
+                        <form id="quoteForm" class="mb-4">
+                            <div class="mb-4">
+                                <label for="symbol" class="block text-sm font-medium text-gray-700">Símbolo do Ativo</label>
+                                <input type="text" id="symbol" name="symbol" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Digite o símbolo do ativo">
+                            </div>
+                            <div class="mb-4">
+                                <label for="amount" class="block text-sm font-medium text-gray-700">Valor Depositado (R$)</label>
+                                <input type="number" id="amount" name="amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Digite o valor depositado em R$">
+                            </div>
+                            <button type="submit" class="button primary fit">Obter Cotação</button>
+            
+                        </form>
+                        <div id="quoteResult"></div>
+                        <div class="table-container">
+                            <table id="resultsTable" class="min-w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Ação</th>
+                                        <th>Valor Depositado (R$)</th>
+                                        <th>Preço de Compra (R$)</th>
+                                        <th>Preço Atual (R$)</th>
+                                        <th>Lucro/Prejuízo (%)</th>
+                                        <th>Lucro/Prejuízo (R$)</th>
+                                        <th>Atualizar</th>
+                                        <th>Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Search -->
+                <section id="search" class="alt">
+
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Homepage</a></li>
+                        <li><a href="{{ url_for('generic') }}">Generic</a></li>
+                        <li><a href="indexgrafico">Gráficos</a></li>
+                        <li>
+                            <span class="opener">Conteúdo Educacional</span>
+                            <ul>
+                                <li><a href="{{ url_for('iniciante') }}">Iniciante</a></li>
+                                <li><a href="{{ url_for('intermediario') }}">Intermediário</a></li>
+                                <li><a href="{{ url_for('avançado') }}">Avançado</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('indexcarteira') }}">Carteira Virtual</a></li>
+                        <li><a href="{{ url_for('indexcalculadora') }}">Calculadora de Juros</a></li>
+                        <li><a href="{{ url_for('indexaçao') }}">Buscar Ação</a></li>
+                        <li><a href="{{ url_for('perfilinvestidor') }}">perfil do investidor</a></li>
+                    </ul>
+                </nav>
+
+
+
+
+            <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Aplicação feita por Rafael Ramos</a>.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/browser.min.js"></script>
+    <script src="static/assets/js/breakpoints.min.js"></script>
+    <script src="static/assets/js/util.js"></script>
+    <script src="static/assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Carregar dados da tabela do Firebase ao carregar a página
+            $.ajax({
+                type: 'GET',
+                url: '/load_data',
+                success: function (response) {
+                    if (response) {
+                        response.forEach(function (item) {
+                            var newRow = '<tr data-id="' + item.id + '" data-symbol="' + item.symbol + '" data-quantity="' + item.quantity + '" data-purchase-price="' + item.purchase_price + '"><td>' + item.symbol + '</td><td>' + item.amount.toFixed(2) + '</td><td>' + item.purchase_price.toFixed(2) + '</td><td data-current-price>0.00</td><td data-profit-loss-percent>0.00%</td><td data-profit-loss-value>0.00</td><td><button class="update-button">Atualizar</button></td><td><button class="delete-button">Excluir</button></td></tr>';
+                            $('#resultsTable tbody').append(newRow);
+                        });
+                    }
+                },
+                error: function () {
+                    console.log('Erro ao carregar os dados.');
+                }
+            });
+
+            // Obter cotação e adicionar linha na tabela
+            $('#quoteForm').submit(function (event) {
+                event.preventDefault();
+                var symbol = $('#symbol').val();
+                var amount = parseFloat($('#amount').val());
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_quote',
+                    data: {symbol: symbol},
+                    success: function (response) {
+                        if (response.hasOwnProperty('regularMarketPrice')) {
+                            var purchasePrice = response.regularMarketPrice;
+                            var quantity = amount / purchasePrice;
+                            $('#quoteResult').html('<p>Cotação atual: ' + purchasePrice.toFixed(2) + '</p>');
+                            var newRow = '<tr data-id="' + response.id + '" data-symbol="' + symbol + '" data-quantity="' + quantity + '" data-purchase-price="' + purchasePrice + '"><td>' + symbol + '</td><td>' + amount.toFixed(2) + '</td><td>' + purchasePrice.toFixed(2) + '</td><td data-current-price>' + purchasePrice.toFixed(2) + '</td><td data-profit-loss-percent>0.00%</td><td data-profit-loss-value>0.00</td><td><button class="update-button">Atualizar</button></td><td><button class="delete-button">Excluir</button></td></tr>';
+                            $('#resultsTable tbody').append(newRow);
+                            saveDataToFirebase();
+                        } else {
+                            $('#quoteResult').html('<p>Cotação não encontrada para o símbolo informado.</p>');
+                        }
+                    },
+                    error: function () {
+                        $('#quoteResult').html('<p>Erro ao obter a cotação. Por favor, tente novamente mais tarde.</p>');
+                    }
+                });
+            });
+
+            // Atualizar cotação e calcular lucro/prejuízo
+            $(document).on('click', '.update-button', function () {
+                var row = $(this).closest('tr');
+                var symbol = row.data('symbol');
+                var quantity = parseFloat(row.data('quantity'));
+                var purchasePrice = parseFloat(row.data('purchase-price'));
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_quote',
+                    data: {symbol: symbol},
+                    success: function (response) {
+                        if (response.hasOwnProperty('regularMarketPrice')) {
+                            var currentPrice = response.regularMarketPrice;
+                            var currentValue = currentPrice * quantity;
+                            var initialValue = purchasePrice * quantity;
+                            var profitLossValue = currentValue - initialValue;
+                            var profitLossPercent = (profitLossValue / initialValue) * 100;
+
+                            row.find('[data-current-price]').text(currentPrice.toFixed(2));
+                            row.find('[data-profit-loss-percent]').text(profitLossPercent.toFixed(2) + '%');
+                            row.find('[data-profit-loss-value]').text(profitLossValue.toFixed(2));
+                            saveDataToFirebase();
+                        } else {
+                            alert('Cotação não encontrada para o símbolo informado.');
+                        }
+                    },
+                    error: function () {
+                        alert('Erro ao atualizar a cotação. Por favor, tente novamente mais tarde.');
+                    }
+                });
+            });
+
+            // Excluir investimento
+            $(document).on('click', '.delete-button', function () {
+                var row = $(this).closest('tr');
+                var id = row.data('id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/delete_data',
+                    data: JSON.stringify({id: id}),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        if (response.success) {
+                            row.remove();
+                            saveDataToFirebase();
+                        } else {
+                            alert('Erro ao excluir o investimento.');
+                        }
+                    },
+                    error: function () {
+                        alert('Erro ao excluir o investimento. Por favor, tente novamente mais tarde.');
+                    }
+                });
+            });
+
+            function saveDataToFirebase() {
+                var tableData = [];
+                $('#resultsTable tbody tr').each(function () {
+                    var row = $(this);
+                    var id = row.data('id');
+                    var symbol = row.data('symbol');
+                    var quantity = parseFloat(row.data('quantity'));
+                    var purchasePrice = parseFloat(row.data('purchase-price'));
+                    var amount = quantity * purchasePrice;
+                    tableData.push({
+                        id: id,
+                        symbol: symbol,
+                        quantity: quantity,
+                        purchase_price: purchasePrice,
+                        amount: amount
+                    });
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/save_data',
+                    contentType: 'application/json',
+                    data: JSON.stringify(tableData),
+                    success: function (response) {
+                        if (response.success) {
+                            console.log('Dados salvos com sucesso.');
+                        }
+                    },
+                    error: function () {
+                        console.log('Erro ao salvar os dados.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
